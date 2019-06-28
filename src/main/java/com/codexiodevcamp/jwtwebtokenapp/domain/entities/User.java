@@ -18,14 +18,14 @@ public class User extends BaseEntity implements UserDetails {
     private Set<Role> authorities;
 
     public User() {
-
         this.authorities = new HashSet<>();
     }
 
-    @Column
+    @Column(name = "name")
     public String getName() {
-        return name;
+        return this.name;
     }
+
 
     @Override
     @Column(name = "password")
@@ -40,25 +40,29 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     @Override
-    @Column(name = "is_account_non_expired")
+    @Transient
+//    @Column(name = "is_account_non_expired")
     public boolean isAccountNonExpired() {
         return false;
     }
 
     @Override
-    @Column(name = "is_account_non_locked")
+    @Transient
+//    @Column(name = "is_account_non_locked")
     public boolean isAccountNonLocked() {
         return false;
     }
 
     @Override
-    @Column(name = "is_credential_non_expired")
+    @Transient
+//    @Column(name = "is_credential_non_expired")
     public boolean isCredentialsNonExpired() {
         return false;
     }
 
     @Override
-    @Column(name = "is_enabled")
+    @Transient
+//    @Column(name = "is_enabled")
     public boolean isEnabled() {
         return false;
     }
@@ -103,14 +107,5 @@ public class User extends BaseEntity implements UserDetails {
 
     public void setAuthorities(Set<Role> authorities) {
         this.authorities = authorities;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", username='" + username + '\'' +
-                ", authorities=" + authorities +
-                '}';
     }
 }
